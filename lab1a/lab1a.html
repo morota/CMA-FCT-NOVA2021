@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="generator" content="pandoc" />
+
+        <meta name="author" content="Gota Morota" />
+    
+        <meta name="date" content="2021-10-20" />
+    
+    <title>Decoding mixed model equations</title>
+
+        <script src="lab1a_files/header-attrs-2.11/header-attrs.js"></script>
+        <script src="lab1a_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="lab1a_files/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="lab1a_files/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+        <script src="lab1a_files/jqueryui-1.11.4/jquery-ui.min.js"></script>
+        <script src="lab1a_files/navigation-1.1/tabsets.js"></script>
+        <script src="lab1a_files/navigation-1.1/codefolding.js"></script>
+        <link href="lab1a_files/magnific-popup-1.1.0/magnific-popup.css" rel="stylesheet" />
+        <script src="lab1a_files/magnific-popup-1.1.0/jquery.magnific-popup.min.js"></script>
+        <link href="lab1a_files/readthedown-0.1/readthedown.css" rel="stylesheet" />
+        <link href="lab1a_files/readthedown-0.1/readthedown_fonts_embed.css" rel="stylesheet" />
+        <script src="lab1a_files/readthedown-0.1/readthedown.js"></script>
+    
+    
+    
+    
+    <!-- tabsets -->
+    <script>
+      $(document).ready(function () {
+	  window.buildTabsets("toc");
+      });
+      $(document).ready(function () {
+	  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+	      $(this).parent().toggleClass('nav-tabs-open')
+	  });
+      });
+    </script>
+
+    <!-- code folding -->
+        <script>
+      $(document).ready(function () {
+	  	  	  window.initializeCodeFolding("hide" === "show");
+	        });
+    </script>
+    
+    <!-- code download -->
+    
+    <!-- tabsets dropdown -->
+
+    <style type="text/css">
+      .tabset-dropdown > .nav-tabs {
+	  display: inline-table;
+	  max-height: 500px;
+	  min-height: 44px;
+	  overflow-y: auto;
+	  background: white;
+	  border: 1px solid #ddd;
+	  border-radius: 4px;
+      }
+      
+      .tabset-dropdown > .nav-tabs > li.active:before {
+	  content: "";
+	  font-family: 'Glyphicons Halflings';
+	  display: inline-block;
+	  padding: 10px;
+	  border-right: 1px solid #ddd;
+      }
+      
+      .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+	  content: "&#xe258;";
+	  border: none;
+      }
+      
+      .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+	  content: "";
+	  font-family: 'Glyphicons Halflings';
+	  display: inline-block;
+	  padding: 10px;
+	  border-right: 1px solid #ddd;
+      }
+      
+      .tabset-dropdown > .nav-tabs > li.active {
+	  display: block;
+      }
+
+      .tabset-dropdown > .nav-tabs > li.active a {
+  	  padding: 0 15px !important;
+      }
+
+      .tabset-dropdown > .nav-tabs > li > a,
+      .tabset-dropdown > .nav-tabs > li > a:focus,
+      .tabset-dropdown > .nav-tabs > li > a:hover {
+	  border: none;
+	  display: inline-block;
+	  border-radius: 4px;
+	  background-color: transparent;
+      }
+      
+      .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+	  display: block;
+	  float: none;
+      }
+      
+      .tabset-dropdown > .nav-tabs > li {
+	  display: none;
+	  margin-left: 0 !important;
+      }
+    </style>
+    
+</head>
+
+<body class="preload">
+
+   	
+         <!-- readthedown start -->   
+   <div id="content" data-toggle="wy-nav-shift">
+     <nav id="nav-top" role="navigation" aria-label="top navigation">
+       <a role="button" href="#" data-toggle="wy-nav-top"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+     </nav>
+         
+      <div class="btn-group pull-right">
+     <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+     <ul class="dropdown-menu" style="min-width: 50px;">
+	    	    <li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+	    <li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+	    	    	         </ul>
+   </div>
+   
+        
+      <h1 class="title">Decoding mixed model equations</h1>
+         <h1 class="subtitle">High-throughput Phenotyping Driven Quantitative Genetics <span class="citation">@CMA-FCT-NOVA</span></h1>
+   
+         <!-- readthedown authors -->
+   <div id="sidebar">
+    <h2><a href="#content">Decoding mixed model equations</a></h2>
+    <div id="toc">
+      <ul>
+      <li><a href="#background">Background</a></li>
+      <li><a href="#exercise-1">Exercise 1</a></li>
+      <li><a href="#exercise-2">Exercise 2</a></li>
+      <li><a href="#exercise-3">Exercise 3</a></li>
+      <li><a href="#exercise-4">Exercise 4</a></li>
+      </ul>
+    </div>
+    <div id="postamble" data-toggle="wy-nav-shift" class="status">
+                  <p class="author"><span class="glyphicon glyphicon-user"></span> Gota Morota</p>
+                        <p class="date"><span class="glyphicon glyphicon-calendar"></span> Oct. 20, 2021</p>
+          </div>
+   </div>
+     
+
+   
+      
+   
+<!-- Don't indent these lines or it will mess pre blocks indentation --> 
+<div id="main">
+<div id="background" class="section level2">
+<h2>Background</h2>
+<p>This is the day 1 computer lab session for quantitative genetic analysis. The goal of this exercise is to understand mixed model equations (MME) using an interactive MME visualization tool <a href="https://lmmonboard.ucdavis.edu/myapp">LMMonBoard</a>.</p>
+</div>
+<div id="exercise-1" class="section level2">
+<h2>Exercise 1</h2>
+<ol style="list-style-type: decimal">
+<li>Select <code>Blank Example</code> from the <code>Data</code> drop-down list.</li>
+<li>In <code>Model equation</code>, remove <code>+ X2 + X5</code> so that you have <code>Y1 = Animal + X1</code>.</li>
+<li>In the <code>Fixed / Random Effects</code> column, select <code>Animal</code> from the <code>Random Effects (i.i.d.)</code> drop-down list.</li>
+<li>Click <code>Update LMM Results</code> on the right upper corner.</li>
+</ol>
+<p><img src="ex1.png" /></p>
+<p>Assume that the residual variance <span class="math inline">\(\sigma^2_e = 1\)</span> and the additive genetic variance <span class="math inline">\(\sigma^2_g = 1\)</span>.</p>
+<div id="questions" class="section level3">
+<h3>Questions</h3>
+<ul>
+<li>How many fixed effects are in the model? How many levels?</li>
+<li>How many random effects are in the model? How many levels?</li>
+<li>Interpret each component of MME.</li>
+</ul>
+</div>
+</div>
+<div id="exercise-2" class="section level2">
+<h2>Exercise 2</h2>
+<ol style="list-style-type: decimal">
+<li>In <code>Model equation</code>, add <code>+ X2</code> so that you have <code>Y1 = Animal + X1 + X2</code>.</li>
+<li>In the <code>Fixed / Random Effects</code> column, select <code>Animal</code> from the <code>Random Effects (i.i.d.)</code> drop-down list.</li>
+<li>Click <code>Update LMM Results</code> on the right upper corner.</li>
+</ol>
+<p><img src="ex2.png" /></p>
+<div id="questions-1" class="section level3">
+<h3>Questions</h3>
+<ul>
+<li>How many fixed effects are in the model? How many levels?</li>
+<li>How many random effects are in the model? How many levels?</li>
+<li>Interpret each component of MME.</li>
+</ul>
+</div>
+</div>
+<div id="exercise-3" class="section level2">
+<h2>Exercise 3</h2>
+<ol style="list-style-type: decimal">
+<li>In the <code>Fixed / Random Effects</code> column, select <code>Animal</code> from the <code>Random Effects (Correlated)</code> drop-down list.</li>
+<li>Click <code>Update LMM Results</code> on the right upper corner.</li>
+</ol>
+<p><img src="ex3.png" /></p>
+<div id="questions-2" class="section level3">
+<h3>Questions</h3>
+<ul>
+<li>How many fixed effects are in the model? How many levels?</li>
+<li>How many random effects are in the model? How many levels?</li>
+<li>Interpret each component of MME.</li>
+</ul>
+</div>
+</div>
+<div id="exercise-4" class="section level2">
+<h2>Exercise 4</h2>
+<ol style="list-style-type: decimal">
+<li>In <code>Model equation</code>, add <code>+ X5</code> so that you have <code>Y1 = Animal + X1 + X2 + X5</code>.</li>
+<li>In the <code>Fixed / Random Effects</code> column, select <code>Animal</code> from the <code>Random Effects (Correlated)</code> drop-down list.</li>
+<li>In the <code>Continuous / Categorical Variables</code> column, select <code>X5</code> from the <code>Continuous</code> drop-down list.</li>
+<li>Click <code>Update LMM Results</code> on the right upper corner.</li>
+</ol>
+<p><img src="ex4.png" /></p>
+<div id="questions-3" class="section level3">
+<h3>Questions</h3>
+<ul>
+<li>How many fixed effects are in the model? How many levels?</li>
+<li>How many random effects are in the model? How many levels?</li>
+<li>Interpret each component of MME.</li>
+</ul>
+</div>
+</div>
+</div>
+
+   
+   
+            
+      
+
+  <script>
+    $(document).ready(function () {
+
+			
+ 		
+	    });
+  </script>
+
+
+
+    <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+	var script = document.createElement("script");
+	script.type = "text/javascript";
+	script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+	document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+  
+</body>
+</html>
