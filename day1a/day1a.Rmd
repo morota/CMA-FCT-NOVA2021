@@ -243,7 +243,7 @@ where $n$ is the number of individuals (e.g., accessions) and $m$ is the number 
 ![](phenotyping.png)
 
 ---
-# Why we need more phenotyped animals? (Erbe et al., 2013)
+# Why we need more phenotyped individuals? (Erbe et al., 2013)
 ![](Erbe.png)
 
 
