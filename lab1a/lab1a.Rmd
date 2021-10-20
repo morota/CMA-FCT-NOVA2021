@@ -1,5 +1,5 @@
 ---
-title: "Decoding mixed model equations"
+title: "Decoding mixed model equations using LMMonBoard"
 subtitle: "High-throughput Phenotyping Driven Quantitative Genetics @CMA-FCT-NOVA"
 author: "Gota Morota"
 date: "Oct. 20, 2021"
