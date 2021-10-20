@@ -622,6 +622,21 @@ Then $\lambda \mathbf{K}^{-1}$ is
 |GenG4| 110 | 
 
 
+---
+# Today's lunch 
+.pull-left[
+<img src="arrozdepolvo.jpg" width=350 height=350>
+Arroz de Polvo 
+]
+
+
+
+.pull-rigth[
+<img src="pudding.jpg" width=350 height=350>
+Pudim de Ovos
+]
+
+
 
 ---
 # The first genotype is missing phenotypes
