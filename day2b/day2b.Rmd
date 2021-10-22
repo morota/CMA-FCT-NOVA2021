@@ -37,6 +37,22 @@ This visit takes place within the scope of the Invited Researcher initiative of 
 
 
 ---
+# Day 1 workshop...
+.pull-left[
+<img src="power1.jpg" width=300 height=350>
+
+
+]
+
+.pull-right[
+<img src="power2.jpg" width=300 height=350>
+
+
+]
+
+
+
+---
 # High-throughput phenotyping
 ![](pheno.png)
 
