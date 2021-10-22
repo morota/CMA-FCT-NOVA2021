@@ -41,6 +41,20 @@ This visit takes place within the scope of the Invited Researcher initiative of 
 ]
 
 
+---
+# Today's lunch 
+.pull-left[
+<img src="lunch1.jpg" width=350 height=350>
+Carvoada de Peixe
+]
+
+
+
+.pull-right[
+<img src="lunch2.jpg" width=350 height=350>
+View of Lisbon
+]
+
 
 ---
 # Multivariate traits
