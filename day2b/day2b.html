@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>High-throughput Phenotyping Driven Quantitative Genetics @CMA-FCT-NOVA</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Gota Morota  http://morotalab.org/  " />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# High-throughput Phenotyping Driven Quantitative Genetics <span class="citation">@CMA-FCT-NOVA</span>
+## Factor analysis and network analysis to characterize high-dimensional phenotypic data
+### Gota Morota <br /><a href="http://morotalab.org/">http://morotalab.org/</a> <br />
+### 2021/10/22
+
+---
+
+
+
+
+
+
+# Acknowledgements
+This visit takes place within the scope of the Invited Researcher initiative of the Statistics and Risk Management group of CMA. It  is funded by national funds through the FCT - Fundação para a Ciência e a Tecnologia, I.P., under the scope of the project UIDB/00297/2020 (Center for Mathematics and Applications).
+
+.pull-left[
+&lt;img src="NOVA.png" width=200 height=130&gt;
+&lt;img src="CMA.png" width=200 height=130&gt;
+
+
+]
+
+.pull-right[
+&lt;img src="NOVAID.png" width=200 height=100&gt;
+&lt;img src="FCT.png" width=200 height=120&gt;
+&lt;img src="RP.png" width=200 height=130&gt;
+
+]
+
+
+---
+# High-throughput phenotyping
+![](pheno.png)
+
+
+
+---
+# Projected shoot area
+&lt;img src="PSA5.png" height="530px" width="600px"/&gt;
+
+
+---
+# How to handle a large number of phenotypes?
+More and more phenotypes are being generated across time and space
+&lt;img src="bigPhe.png" height="130px" width="600px"/&gt;
+
+Challenges:
+- high dimensional phenotypes
+- diverse phenotypes
+- how to make sense of these data and interpret
+-  multi-trait linear mixed model is computationally challenging
+
+Objective:
+- use Bayesian confirmatory factor analysis and Bayesian network to characterize a wide spectrum of rice phenotypes
+
+
+---
+# Confirmatory factor analysis
+&lt;img src="CFAb.png" width=400 height=430&gt;
+
+
+---
+# Bayesian confirmatory factor analysis
+Assume observed phenotypes are derived from  underlying latent variables
+
+`\begin{align*}
+    \mathbf{T} =  \mathbf{\Lambda} \mathbf{F} + \mathbf{s}
+\end{align*}`
+  
+- `\(\mathbf{T}\)` is the `\(t \times n\)` matrix of observed phenotypes (413 accessions)
+
+- `\(\mathbf{\Lambda}\)` is the `\(t \times q\)` factor loading matrix
+
+- `\(\mathbf{F}\)` is the `\(q \times n\)` latent variables matrix
+
+- `\(\mathbf{s}\)` is the `\(t \times n\)` matrix of specific effects.
+
+`\begin{align*}
+    var\mathbf{(T)} &amp;= \mathbf{\Lambda}\mathbf{\Phi}\mathbf{\Lambda}' + \mathbf{\Psi},
+\end{align*}`
+
+
+- `\(\mathbf{\Phi}\)` is the variance of latent variables
+
+- `\(\mathbf{\Psi}\)` is the variance of specific effects
+
+
+---
+# Example
+&lt;font size=4&gt; Suppose we have four phenotypes, 413 lines, and assume there are two factors.&lt;/font&gt; 
+
+- `\(\mathbf{T}\)` is `\(t \times n\)` (4 x 413)
+
+|  | Line 1  | Line 2          | `\(\cdots\)`  | Line 413   
+| ------------- |:-------------:| -----:| -----:|-----:|
+|Phenotype 1| 47  | 23 | `\(\cdots\)` | 39
+|Phenotype 2| 51  |  65     |   `\(\cdots\)`| 43
+|Phenotype 3| 46  | 49     |    `\(\cdots\)` | 49
+|Phenotype 4| 46  | 61   |    `\(\cdots\)` |  53
+
+
+- `\(\mathbf{\Lambda}\)` is `\(t \times q\)` (4 x 2)
+
+|  | Factor 1  | Factor 2        
+| ------------- |:-------------:| -----:| 
+|Phenotype 1| `\(\cdot\)`  | `\(\cdot\)`| 
+|Phenotype 2| `\(\cdot\)` |  `\(\cdot\)`
+|Phenotype 3| `\(\cdot\)` | `\(\cdot\)`     
+|Phenotype 4| `\(\cdot\)`  | `\(\cdot\)` 
+
+
+---
+# Example (cont.)
+&lt;font size=4&gt; Suppose we have four phenotypes, 413 lines, and assume there are two factors.&lt;/font&gt; 
+
+- `\(\mathbf{F}\)` is `\(q \times n\)` (2 x 413)
+
+|  | Line 1  | Line 2          | `\(\cdots\)`  | Line 413   
+| ------------- |:-------------:| -----:| -----:|-----:|
+|Factor 1| `\(\cdot\)`  | `\(\cdot\)` | `\(\cdots\)` | `\(\cdot\)` 
+|Factor 2| `\(\cdot\)` |  `\(\cdot\)`    |   `\(\cdots\)`| `\(\cdot\)`
+
+
+
+- `\(\mathbf{s}\)` is `\(t \times n\)` (4 x 413)
+
+|  | Line 1  | Line 2          | `\(\cdots\)`  | Line 413   
+| ------------- |:-------------:| -----:| -----:|-----:|
+|Phenotype 1| `\(\cdot\)`   | `\(\cdot\)`  | `\(\cdots\)` | `\(\cdot\)` 
+|Phenotype 2| `\(\cdot\)`   |  `\(\cdot\)`     |   `\(\cdots\)`| `\(\cdot\)` 
+|Phenotype 3| `\(\cdot\)`   | `\(\cdot\)`     |    `\(\cdots\)` | `\(\cdot\)` 
+|Phenotype 4| `\(\cdot\)`   | `\(\cdot\)`    |    `\(\cdots\)` |  `\(\cdot\)` 
+
+
+
+
+---
+# Prior distributions 
+
+`\begin{align*}
+    var\mathbf{(T)} &amp;= \mathbf{\Lambda}\mathbf{\Phi}\mathbf{\Lambda}' + \mathbf{\Psi},
+\end{align*}`
+
+- Factor loading matrix: 
+`\begin{align*}
+&amp; \mathbf{\Lambda} \sim \mathcal{N}(0, 0.01)
+\end{align*}`
+
+- Variance of latent variables:
+`\begin{align*}
+\mathbf{\Phi} \sim \mathcal{W}^{-1}(\mathbf{I}_{66}, 7) 
+\end{align*}`
+
+- Variance of specific effects:
+`\begin{align*}
+\mathbf{\Psi} \sim \Gamma^{-1} (1, 0.5)
+\end{align*}`
+
+---
+# Define 6 latent variables from 48 phenotypes
+
+
+1. Grain Morphology (Grm, 11)
+    - Seed length (Sl), Seed width (Sw), Seed volume (Sv), etc
+2. Morphology (Mrp, 14)
+    - Flag leaf length (Fll), Flag leaf width (Flw), etc
+3. Flowering Time (Flt, 7)
+    - Flowering time in Arkansas (Fla), Flowering time in Aberdeen (Flb), etc}
+4. Ionic components of salt stress (Iss, 6) 
+    - Na shoot (Nas), K shoot salt (Kss), etc
+5. Yield (Yid, 5)
+    - Panicle number per plant (Pnu),   Panicle length (Pal), etc
+6. Morphological salt response (Msr, 5)  
+    - Shoot BM ratio (Sbr), Root BM ratio (Rbr), etc
+
+---
+# Study the genetics of each latent variable
+&lt;img src="BCFA.jpg" height="530px" width="700px"/&gt;
+
+
+
+---
+# Multivariate analysis
+Bayesian genomic best linear unbiased prediction
+    - separate genetic effects from noise (44K SNPs)
+    
+`\begin{align*}
+    \mathbf{F} = \boldsymbol{\mu} + \mathbf{Xb} + \mathbf{Zu} + \boldsymbol{\epsilon}
+\end{align*}`
+
+&lt;div align="center"&gt;    
+&lt;img src="MTM.png" height="120px" width="500px"/&gt;
+&lt;/div&gt;
+
+- `\(\mathbf{F}\)` : Vector of factor scores
+- `\(\mathbf{X}\)` : Incidence matrix for fixed effects 
+- `\(\mathbf{Z}\)` : Incidence matrix for additive genetic effects
+- `\(\mathbf{b}\)`: Vector of fixed effects
+- `\(\mathbf{u}\)`: Vector of additive genetic effects
+- `\(\mathbf{e}\)`: Vector of residuals
+
+
+
+---
+# Piror distributions
+`\begin{align*}
+    \mathbf{F} = \boldsymbol{\mu} + \mathbf{Xb} + \mathbf{Zu} + \boldsymbol{\epsilon}
+\end{align*}`
+
+&lt;div align="center"&gt;    
+&lt;img src="MTMvar.png" height="100px" width="500px"/&gt;
+&lt;/div&gt;
+- `\(\boldsymbol{\mu}\)` and `\(\mathbf{b}\)` were assigned a flat prior
+
+- `\(\boldsymbol{\Sigma_{u}}\)`, `\(\boldsymbol{\Sigma_{e}}\)` are variance-covariance matrix between latent variables
+
+
+`\begin{align*}
+\boldsymbol{\Sigma_{u}}, \boldsymbol{\Sigma_{e}} \sim \mathcal{W}^{-1}(\mathbf{I}_{66}, 6) 
+\end{align*}`
+
+
+
+Example: If there are two factors
+
+&lt;img src="sigma2g.png" height="100px" width="160px"&gt;
+&lt;img src="sigma2e.png" height="100px" width="150px"&gt;
+
+
+
+
+---
+# Bayesian Network
+Probabilistic directed acyclic graphical model
+    - interrelationship (Edges) among latent variables (Nodes)
+    - genetic selection for breeding requires causal assumptions
+
+&lt;div align="center"&gt; 
+&lt;img src="BCFA2.png" height="256px" width="400px"/&gt;
+&lt;/div&gt;
+
+
+---
+# Constraint-based learning
+&lt;img src="Fig3.jpg" height="530px" width="700px"/&gt;
+
+
+---
+# Score-based learning
+&lt;img src="Score-based-diagram.png" height="500px" width="700px"/&gt;
+
+
+---
+# Examples of algorithms
+Score-based algorithm
+
+- Hill climbing
+- Tabu search
+
+Hybrid algorithm
+
+- Max-Min Hill Climbing algorithm
+- General 2-Phase Restricted Maximization algorithm
+
+
+---
+# Standardized factor loadings
+&lt;img src="load2.png" height="506px" width="500px"/&gt;
+
+---
+# Standardized factor loadings
+&lt;img src="load3.png" height="466px" width="500px"/&gt;
+
+
+---
+# Genetic correlations among latent variables
+&lt;img src="Cor_plot_for_presentation.png" height="530px" width="700px"/&gt;
+
+---
+# Hill Climbing algorithm
+&lt;img src="BN_HC.png" height="530px" width="700px"/&gt;
+
+
+
+
+---
+# Tabu algorithm
+&lt;img src="BN_TABU.png" height="530px" width="700px"/&gt;
+
+
+
+---
+# Max-Min Hill Climbing algorithm
+&lt;img src="BN_MMHC.png" height="530px" width="700px"/&gt;
+
+
+
+---
+# General 2-Phase Restricted Maximization algorithm
+&lt;img src="BN_RSMAX2.png" height="460px" width="650px"/&gt;
+
+
+---
+# Consensus Bayesian network
+&lt;img src="BN_consensus.png" height="460px" width="650px"/&gt;
+
+---
+# Reference
+&lt;img src="G32018.png" height="460px" width="650px"/&gt;
+[10.1534/g3.119.400154](https://doi.org/10.1534/g3.119.400154)
+
+
+
+---
+# FA vs. PCA
+
+- What is the main difference between principal component analysis (PCA) and factor analysis (FA)? 
+
+
+---
+# Confirmatory factor analysis vs. Explanatory factor analysis
+&lt;img src="CFA_EFA.png" height="460px" width="650px"/&gt;
+
+
+
+---
+# EFA analysis in synthetic hexaploid wheat
+How to analyze the following 45 phenotypes simultaneously?
+
+harvest  index (HI),  biomass weight  (BMWT),  grain  volume  weight  (GVWT),  flag  leaf  length  (FLL), flag  leaf  width (FLW),  flag  leaf  area  (FLA),  rachis  break  (RB),  sterile spikelet  (SP), spike  length  (SL), seeds per spike (SPS), spikelet number (SN), fertile spikelet (FS), spike weight (SW), grain97weight  per  spike  (GPS), spike  harvest  index  (SHI), arsenic  (As),  calcium  (Ca),  cadmium  (Cd),  colbalt  (Co), copper  (Cu),  iron  (Fe),  potassium  (K),  lithium  (Li),  magnesium  (Mg),  manganese  (Mn),  molybdenum (Mo), nickel (Ni), phosphorous (P), sulphur (S), titanium (Ti), zinc (Zn), leaf rust coefficient of infection (LRCI), leaf rust infection type (LRIT), leaf rust severity (LRS), steam rust coefficient of infection at Haymana (SRCIH), stem rust infection type at Haymana (SRITH), stem rust severity at Haymana (SRSH), stem rust coefficient of infection at Kastamonu (SRCIK), stem rust infection type at Kastamonu (SRITK), stem rust severity at Kastamanu (SRSK), yellow rust coefficient of infection at Haymana (YRCIH), yellow rust infection type at Haymana (YRIH), yellow rust severity at Haymana (YRSH), and yellow115rust severity at Kastamonu (YRSK).
+
+---
+# Phenotypic correlations 
+&lt;img src="Phenotypic_Cor.png" height="500px" width="600px"/&gt;
+
+
+---
+# Parallel analysis
+&lt;img src="Parallel_Plots.png" height="500px" width="600px"/&gt;
+
+
+---
+# Factor loadings from EFA
+Cut-off value of 0.3
+&lt;img src="Heat_map.png" height="450px" width="600px"&gt;
+
+
+
+---
+# Latent structure from EFA
+&lt;img src="Data_Str.png" height="400px" width="650px"/&gt;
+
+GYL: grain yield; ARC: plant architecture; FL:
+flag and leaf, MIN: minerals; YRD: yellow rust disease; SRDK: stem
+rust disease at Kastamonu; SRDH: stem rust disease at Haymana;
+and LRD: leaf rust disease
+
+
+
+---
+# Factor loadings from CFA 
+&lt;img src="EFA_FL1.png" height="460px" width="650px"/&gt;
+
+---
+# Factor loadings from CFA 
+&lt;img src="EFA_FL2.png" height="460px" width="650px"/&gt;
+
+---
+# Factor loadings from CFA 
+&lt;img src="EFA_FL3.png" height="460px" width="650px"/&gt;
+
+
+
+---
+# Genomic heritability
+
+|Phenotype  |  Mean of original phenotypes  | Latent factor 
+| ------------- | :-------------:| :-------------:|
+|GYL|0.249| 0.386  
+|FL| 0.392 | 0.575 
+|ARC| 0.395| 0.514     
+|MIN| 0.271| 0.346 
+|LRD| 0.271 | 0.402 
+|SRDH| 0.388 | 0.568  
+|YRD| 0.297 | 0.393 
+
+* The latent factors consistently captured greater heritability
+
+
+---
+# Bayesian network of latent variables
+&lt;img src="BN_Plot.png" height="500px" width="660px"/&gt;
+
+---
+# Bayesian information criterion scores
+&lt;img src="BIC.png" height="500px" width="660px"/&gt;
+
+---
+# Reference
+&lt;img src="momen.png" height="360px" width="550px"/&gt;
+[10.1002/pld3.304](https://doi.org/10.1002/pld3.304)
+
+
+
+---
+# Summary
+
+- Bayesian cofirmatory factor analysis allows to work at the
+level of latent variables
+
+- Bayesian network can be applied to predict the potential influence of external interventions or selection associated with target traits
+
+- Provide greater insights than pairwise-association measures of multiple phenotypes
+
+- It is possible to dissect genetic signals from high-dimensional phenotypes if we focus on underlying patterns in big data
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
